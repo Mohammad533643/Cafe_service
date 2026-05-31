@@ -1,0 +1,48 @@
+# Python / Django
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# Environment Variables
+.env
+.env.*
+
+# Django
+*.log
+media/
+staticfiles/
+
+# React / Vite
+node_modules/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+coverage/
+
+# Cache
+.cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Misc
+*.swp
+*.swo
