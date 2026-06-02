@@ -1,0 +1,23 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: cafe_mysql
+
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    environment:
+      MYSQL_DATABASE: cafe_service_db
+      MYSQL_USER: cafe_user
+      MYSQL_PASSWORD: Cafe_root_1234
+      MYSQL_ROOT_PASSWORD: Root_Service_1234
+    ports:
+      - "3307:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
