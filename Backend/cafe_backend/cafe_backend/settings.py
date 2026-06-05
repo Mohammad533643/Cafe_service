@@ -10,23 +10,28 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# for .env file
+ROOT_DIR = BASE_DIR.parent.parent
+env = environ.Env()
+
+environ.Env.read_env(ROOT_DIR / ".env")
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-c9pto*e2fl^5v)m=p7wx^l91hfo^@+wsk99gjrpv(ojscyf4#9"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
-ALLOWED_HOSTS = []
+DEBUG = env("DEBUG")
 
+SECRET_KEY = env("SECRET_KEY")
 
 # Application definition
 
@@ -37,6 +42,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "rest_framework",
+
+    # local apps
+    "apps.cafes",
+    "apps.core",
+    "apps.menu",
+    "apps.users",
 ]
 
 MIDDLEWARE = [
@@ -74,8 +87,13 @@ WSGI_APPLICATION = "cafe_backend.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": env("MYSQL_DATABASE"),
+        "USER": env("MYSQL_USER"),
+        "PASSWORD": env("MYSQL_PASSWORD"),
+        "HOST": env("MYSQL_HOST", default="127.0.0.1"),
+        "PORT": env("MYSQL_PORT", default="3307"),
+
     }
 }
 
