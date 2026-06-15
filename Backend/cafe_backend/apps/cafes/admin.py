@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import Cafe
 
-# Register your models here.
+
+@admin.register(Cafe)
+class CustomCafe(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "cafe_ID"
+    )
