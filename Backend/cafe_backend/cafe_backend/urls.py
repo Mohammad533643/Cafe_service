@@ -25,4 +25,5 @@ urlpatterns = [
     path("api/cafes/",include("apps.cafes.urls")),
     path("api/users/",include("apps.users.urls")),
     path("api/menu/",include("apps.menu.urls")),
+    path("api/tables/",include("apps.tables.urls")),
 ]

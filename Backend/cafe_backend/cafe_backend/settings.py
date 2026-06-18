@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "apps.core",
     "apps.menu",
     "apps.users",
+    "apps.tables",
 ]
 
 MIDDLEWARE = [
