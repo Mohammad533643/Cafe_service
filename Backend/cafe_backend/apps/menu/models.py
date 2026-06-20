@@ -21,22 +21,22 @@ class Menu(models.Model):
         return self.name
 
 
-class Ithem(models.Model):
+class Item(models.Model):
     menu = models.ForeignKey(
         Menu,
         on_delete=models.CASCADE,
-        related_name="ithem"
+        related_name="item"
     )
 
     name = models.CharField(max_length=250)
-    ithem_ID = models.PositiveIntegerField(
+    item_ID = models.PositiveIntegerField(
         unique=True,
         validators=[
             MinValueValidator(1)
         ])
 
     price = models.DecimalField(
-        max_digits=30,
+        max_digits=10,
         decimal_places=3,
     )
 

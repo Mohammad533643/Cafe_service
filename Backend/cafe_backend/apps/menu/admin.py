@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Menu, Ithem
+from .models import Menu, Item
 
 
 @admin.register(Menu)
@@ -10,7 +10,7 @@ class CustomCafe(admin.ModelAdmin):
     )
 
 
-@admin.register(Ithem)
+@admin.register(Item)
 class CustomIthem(admin.ModelAdmin):
     list_display = (
         "name",
