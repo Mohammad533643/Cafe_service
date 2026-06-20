@@ -5,6 +5,12 @@ from apps.menu.models import Item
 
 
 class Order(models.Model):
+
+    class Status(models.TextChoices):
+        OPEN = "open", "Open"
+        CLOSED = "closed", "Closed"
+        PAID = "paid", "Paid"
+
     cafe = models.ForeignKey(Cafe,
                              on_delete=models.CASCADE,
                              related_name="orders")
@@ -18,6 +24,12 @@ class Order(models.Model):
         max_digits=12,
         decimal_places=3,
         default=0
+    )
+
+    status = models.CharField(
+        max_length=10,
+        choices=Status.choices,
+        default=Status.OPEN
     )
 
     def __str__(self):
