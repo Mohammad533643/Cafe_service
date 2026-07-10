@@ -43,7 +43,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    # API
     "rest_framework",
+    "django_filters",
+    "drf_spectacular",
+    "corsheaders",
 
     # local apps
     "apps.cafes",
@@ -54,7 +58,26 @@ INSTALLED_APPS = [
     "apps.orders",
 ]
 
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+
+    "DEFAULT_FILTER_BACKENDS": (
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
+
+CORS_ALLOWED_ORIGINS = True
+
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
